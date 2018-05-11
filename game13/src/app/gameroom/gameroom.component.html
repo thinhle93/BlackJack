@@ -1,0 +1,47 @@
+<p *ngIf="errors">
+{{errors}}
+</p>
+
+<div class="wrapper">
+
+    <button *ngIf="!allPlayers" (click)="play()">DealCard</button>
+    <button *ngIf="allPlayers && turn >= allPlayers.length" (click)="clear()">New game</button>
+    
+    <!-- <button *ngIf="allPlayers" (click)="deal()">Deal Game (This is for playing new round without reshuffling whole deck)</button> -->
+    
+    
+    
+    <div class="players" *ngFor="let player of allPlayers; let idx = index">
+      <div *ngIf="player.socketid == sktid">
+          <button *ngIf="player.total < 21 && turn == idx" (click)="plyr_idx(idx)">Hit</button>
+          <button *ngIf="turn == idx" (click)="stay()" >Stay</button>
+      </div>
+      
+      <p *ngIf="player.total > 21">Bust! Please press stay</p>
+      <p *ngIf="player.total == 21">Winner Winner Chicken Dinner! Please press stay</p>
+      <p>{{idx}} {{player.name}} - Total: {{player.total}}</p>
+      <div class="playerhand" *ngFor="let i of player.hand">
+          <div style="font-size: 30px;">{{i[0]}}</div>
+          <div style="font-size: 30px;">{{i[1]}}</div>
+        
+      </div>
+    
+    </div>
+
+    <div *ngIf="turn >= allPlayers.length">
+        <p>Round Over!</p>
+
+    </div>
+
+</div>
+
+
+<!-- <div *ngFor="let player of allPlayers">
+  //this part is for displaying individual hands for each socket instead of every hand
+  <div *ngIf="player.socketid == sktid">
+  <p>{{player.name}}</p>
+  <div *ngFor="let i of player.hand">
+      <p>{{i[0]}}-{{i[1]}}</p>  
+  </div> 
+</div>
+</div> -->

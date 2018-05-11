@@ -1,0 +1,19 @@
+.wrapper{
+    padding-left: 100px;
+}
+
+.players{
+    border: 2px solid black;
+    margin: 10px 0;
+    width: 50%;
+    padding: 10px;
+}
+
+.playerhand{
+    border: 1px solid red;
+    width: 34px; 
+    height: 60px; 
+    padding: 0 0 5px 2px; 
+    display: inline-block; 
+    margin-right: 2px;
+}
